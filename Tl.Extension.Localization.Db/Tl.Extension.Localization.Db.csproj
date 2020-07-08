@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tl.Extension.Localization.Abstraction\Tl.Extension.Localization.Abstraction.csproj" />
+    <ProjectReference Include="..\Tl.Extension.Localization\Tl.Extension.Localization.csproj" />
+  </ItemGroup>
+
+</Project>

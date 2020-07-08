@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tl.Extension.Localization.Db\Tl.Extension.Localization.Db.csproj" />
     <ProjectReference Include="..\Tl.Extension.Localization.Json\Tl.Extension.Localization.Json.csproj" />
     <ProjectReference Include="..\Tl.Extension.Localization.ResouceManager\Tl.Extension.Localization.ResouceManager.csproj" />
   </ItemGroup>

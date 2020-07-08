@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tl.Extension.Localization.Web", "Tl.Extension.Localization.Web\Tl.Extension.Localization.Web.csproj", "{B34B535B-9CBA-43E7-9A13-FE3876BEC590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tl.Extension.Localization.Web", "Tl.Extension.Localization.Web\Tl.Extension.Localization.Web.csproj", "{B34B535B-9CBA-43E7-9A13-FE3876BEC590}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tl.Extension.Localization", "Tl.Extension.Localization\Tl.Extension.Localization.csproj", "{21708B7E-BFC6-43C1-90A8-C885A98B7C60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tl.Extension.Localization", "Tl.Extension.Localization\Tl.Extension.Localization.csproj", "{21708B7E-BFC6-43C1-90A8-C885A98B7C60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tl.Extension.Localization.Abstraction", "Tl.Extension.Localization.Abstraction\Tl.Extension.Localization.Abstraction.csproj", "{75A92053-E96D-41A9-B267-77990A1ED46C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tl.Extension.Localization.Abstraction", "Tl.Extension.Localization.Abstraction\Tl.Extension.Localization.Abstraction.csproj", "{75A92053-E96D-41A9-B267-77990A1ED46C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tl.Extension.Localization.ResouceManager", "Tl.Extension.Localization.ResouceManager\Tl.Extension.Localization.ResouceManager.csproj", "{536B6EF0-C2C1-4FE9-BDA1-0DA8D5A55712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tl.Extension.Localization.ResouceManager", "Tl.Extension.Localization.ResouceManager\Tl.Extension.Localization.ResouceManager.csproj", "{536B6EF0-C2C1-4FE9-BDA1-0DA8D5A55712}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tl.Extension.Localization.Json", "Tl.Extension.Localization.Json\Tl.Extension.Localization.Json.csproj", "{8134D14C-0020-4DBC-94B9-DAB76C009AB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tl.Extension.Localization.Json", "Tl.Extension.Localization.Json\Tl.Extension.Localization.Json.csproj", "{8134D14C-0020-4DBC-94B9-DAB76C009AB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tl.Extension.Localization.File", "Tl.Extension.Localization.File\Tl.Extension.Localization.File.csproj", "{C91910E0-9D64-4ECD-8A22-EC622513E174}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tl.Extension.Localization.File", "Tl.Extension.Localization.File\Tl.Extension.Localization.File.csproj", "{C91910E0-9D64-4ECD-8A22-EC622513E174}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tl.Extension.Localization.Db", "Tl.Extension.Localization.Db\Tl.Extension.Localization.Db.csproj", "{C8D9B75D-CAB1-45E1-95EE-07B6ADC34910}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C91910E0-9D64-4ECD-8A22-EC622513E174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C91910E0-9D64-4ECD-8A22-EC622513E174}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C91910E0-9D64-4ECD-8A22-EC622513E174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8D9B75D-CAB1-45E1-95EE-07B6ADC34910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8D9B75D-CAB1-45E1-95EE-07B6ADC34910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8D9B75D-CAB1-45E1-95EE-07B6ADC34910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8D9B75D-CAB1-45E1-95EE-07B6ADC34910}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -32,8 +32,7 @@ namespace Tl.Extension.Localization
             return this;
         }
 
-        public IStringLocalizer CreateStringLocalizer() =>
-            CreateStringLocalizer(CultureInfo.CurrentUICulture);
+        public IStringLocalizer CreateStringLocalizer() => CreateStringLocalizer(CultureInfo.CurrentUICulture);
 
         public IStringLocalizer CreateStringLocalizer(CultureInfo culture)
         {

@@ -5,6 +5,7 @@ using System.Net.NetworkInformation;
 using System.Reflection;
 using Tl.Extension.Localization;
 using Tl.Extension.Localization.Abstraction;
+using Tl.Extension.Localization.Db;
 using Tl.Extension.Localization.Json;
 using Tl.Extension.Localization.ResouceManager;
 
@@ -32,7 +33,7 @@ namespace Localization.Controllers
             }
 
 
-            var stringLocalizer = GetIStringLocalizerByJson();
+            var stringLocalizer = GetIStringLocalizerByDb();
             return Content(stringLocalizer["Greeting"]);
         }
 
@@ -58,6 +59,14 @@ namespace Localization.Controllers
             };
             source.ResolveFileProvider();
 
+            var stringLocalizerFactory = new StringLocalizerFactory();
+            stringLocalizerFactory.AddSource(source);
+            return stringLocalizerFactory.CreateStringLocalizer();
+        }
+
+        private IStringLocalizer GetIStringLocalizerByDb()
+        {
+            var source = new DbStringLocalizerSource();
             var stringLocalizerFactory = new StringLocalizerFactory();
             stringLocalizerFactory.AddSource(source);
             return stringLocalizerFactory.CreateStringLocalizer();
