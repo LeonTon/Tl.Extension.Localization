@@ -23,7 +23,7 @@ namespace Tl.Extension.Localization.ResouceManager
                 value = _resourceManager.GetString(key, culture);
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 value = null;
                 return false;

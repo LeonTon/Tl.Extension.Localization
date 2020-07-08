@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Localization.Models;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
+using System.IO;
+using System.Net.NetworkInformation;
+using System.Reflection;
+using Tl.Extension.Localization;
+using Tl.Extension.Localization.Abstraction;
+using Tl.Extension.Localization.Json;
+using Tl.Extension.Localization.ResouceManager;
 
 namespace Localization.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IStringLocalizer _localizer;
+        private readonly string baseName = "Tl.Extension.Localization.Web.Resource";
 
-
-        public HomeController(IStringLocalizerFactory localizerFactory)
+        public HomeController()
         {
-            _localizer = localizerFactory.Create("SharedResource", "Localization");
         }
 
         // GET: /<controller>/
@@ -29,7 +26,42 @@ namespace Localization.Controllers
                 CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = new CultureInfo(cultures);
 
             }
-            return Content(_localizer["Greeting"]);
+            else
+            {
+                CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = new CultureInfo("en");
+            }
+
+
+            var stringLocalizer = GetIStringLocalizerByJson();
+            return Content(stringLocalizer["Greeting"]);
         }
+
+        private IStringLocalizer GetIStringLocalizerByResourceManager()
+        {
+            var source = new ResourceManagerStringLocalizerSource(
+                $"{baseName}.SharedResource",
+                Assembly.GetExecutingAssembly());
+
+            var stringLocalizerFactory = new StringLocalizerFactory();
+
+            stringLocalizerFactory.AddSource(source);
+
+           return  stringLocalizerFactory.CreateStringLocalizer();
+        }
+
+        private IStringLocalizer GetIStringLocalizerByJson()
+        {
+            var source = new JsonStringLocalizerSource
+            {
+                Directory = Directory.GetCurrentDirectory()+ "/Resource",
+                FilePathPattern = $"SharedResource.*.json"
+            };
+            source.ResolveFileProvider();
+
+            var stringLocalizerFactory = new StringLocalizerFactory();
+            stringLocalizerFactory.AddSource(source);
+            return stringLocalizerFactory.CreateStringLocalizer();
+        }
+
     }
 }

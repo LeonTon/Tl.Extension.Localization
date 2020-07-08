@@ -22,7 +22,8 @@ namespace Tl.Extension.Localization.Json
         {
             using (var reader = new StreamReader(input))
             {
-                Data[culture] = JsonSerializer.Deserialize<Dictionary<string, string>>(reader.ReadLine());
+                var jsonData = reader.ReadToEnd();
+                Data[culture] = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonData);
             }
         }
     }
