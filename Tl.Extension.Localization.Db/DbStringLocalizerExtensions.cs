@@ -6,7 +6,7 @@ namespace Tl.Extension.Localization.Db
     public static class DbStringLocalizerExtensions
     {
         public static ILocalizationBuilder AddDbSource(
-            this ILocalizationBuilder builder, string directory, string filePathPattern)
+            this ILocalizationBuilder builder)
         {
             var source = new DbStringLocalizerSource();
             
