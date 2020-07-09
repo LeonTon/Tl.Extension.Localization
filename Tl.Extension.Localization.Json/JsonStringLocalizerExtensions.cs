@@ -5,8 +5,8 @@ namespace Tl.Extension.Localization.Json
 {
     public static class JsonStringLocalizerExtensions
     {
-        public static ILocalizationBuilder AddJsonFiles(
-            this ILocalizationBuilder builder, string directory, string filePathPattern)
+        public static IServiceCollection AddJsonFiles(
+            this IServiceCollection services, string directory, string filePathPattern)
         {
             var source = new JsonStringLocalizerSource
             {
@@ -16,9 +16,9 @@ namespace Tl.Extension.Localization.Json
             
             source.ResolveFileProvider();
             
-            builder.Services.AddSingleton<IStringLocalizerSource>(source);
+            services.AddSingleton<IStringLocalizerSource>(source);
             
-            return builder;
+            return services;
         }
     }
 }

@@ -5,14 +5,14 @@ namespace Tl.Extension.Localization.Db
 {
     public static class DbStringLocalizerExtensions
     {
-        public static ILocalizationBuilder AddDbSource(
-            this ILocalizationBuilder builder, string directory, string filePathPattern)
+        public static IServiceCollection AddDbSource(
+            this IServiceCollection services)
         {
             var source = new DbStringLocalizerSource();
             
-            builder.Services.AddSingleton<IStringLocalizerSource>(source);
+            services.AddSingleton<IStringLocalizerSource>(source);
             
-            return builder;
+            return services;
         }
     }
 }

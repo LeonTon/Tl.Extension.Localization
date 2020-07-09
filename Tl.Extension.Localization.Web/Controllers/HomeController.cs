@@ -19,12 +19,6 @@ namespace Localization.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly string baseName = "Tl.Extension.Localization.Web.Resource";
-
-        public HomeController()
-        {
-        }
-
         // GET: /<controller>/
         public IActionResult Index(string cultures)
         {
