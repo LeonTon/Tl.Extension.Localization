@@ -18,8 +18,8 @@ namespace Tl.Extension.Localization
         {
             _culture = culture;
             _providers = providers;
-            
-            
+
+
             _changeTokenRegistrations = new List<IDisposable>(providers.Count);
             foreach (var p in providers)
             {
@@ -27,8 +27,8 @@ namespace Tl.Extension.Localization
                 _changeTokenRegistrations.Add(ChangeToken.OnChange(() => p.GetReloadToken(), () => RaiseChanged()));
             }
         }
-        
-        
+
+
         public LocalizedString this[string name]
         {
             get
@@ -51,11 +51,36 @@ namespace Tl.Extension.Localization
             }
         }
 
-        public LocalizedString this[string name, params object[] arguments] =>
-            throw new System.NotImplementedException();
+        public LocalizedString this[string name, StringLocalizerParamMapper map, Func<StringLocalizerParamMapper, string> func]
+        {
+            get
+            {
+                if (name == null)
+                {
+                    throw new ArgumentNullException(nameof(name));
+                }
+
+                string value = null;
+                foreach (var provider in _providers)
+                {
+                    if (provider.TryGet(_culture, name, out value))
+                    {
+                        break;
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    map.Template = value;
+                    value = func.Invoke(map);
+                }
+
+                return new LocalizedString(name, value ?? name, resourceNotFound: value == null);
+            }
+        }
 
 
-        
+
         public void Reload()
         {
             foreach (var provider in _providers)

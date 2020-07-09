@@ -1,13 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using System.IO;
+using System.Linq.Expressions;
 using System.Net.NetworkInformation;
 using System.Reflection;
+using Microsoft.VisualBasic;
 using Tl.Extension.Localization;
 using Tl.Extension.Localization.Abstraction;
 using Tl.Extension.Localization.Db;
 using Tl.Extension.Localization.Json;
 using Tl.Extension.Localization.ResouceManager;
+using Tl.Extension.Localization.Web;
+using Tl.Extension.Localization.Web.Strategy;
 
 namespace Localization.Controllers
 {
@@ -33,43 +39,32 @@ namespace Localization.Controllers
             }
 
 
-            var stringLocalizer = GetIStringLocalizerByDb();
-            return Content(stringLocalizer["Greeting"]);
-        }
+            var stringLocalizer = new LocalizerStrategyFactory()
+                .GetLocalizerStrategyByResourceType(ResourceTypeEnum.ResourceFile)
+                .GetStringLocalizer();
 
-        private IStringLocalizer GetIStringLocalizerByResourceManager()
-        {
-            var source = new ResourceManagerStringLocalizerSource(
-                $"{baseName}.SharedResource",
-                Assembly.GetExecutingAssembly());
+            //var result = stringLocalizer["Greeting"];
 
-            var stringLocalizerFactory = new StringLocalizerFactory();
-
-            stringLocalizerFactory.AddSource(source);
-
-           return  stringLocalizerFactory.CreateStringLocalizer();
-        }
-
-        private IStringLocalizer GetIStringLocalizerByJson()
-        {
-            var source = new JsonStringLocalizerSource
+            var mapper = new StringLocalizerParamMapper("@", new Dictionary<string, string>()
             {
-                Directory = Directory.GetCurrentDirectory()+ "/Resource",
-                FilePathPattern = $"SharedResource.*.json"
-            };
-            source.ResolveFileProvider();
-
-            var stringLocalizerFactory = new StringLocalizerFactory();
-            stringLocalizerFactory.AddSource(source);
-            return stringLocalizerFactory.CreateStringLocalizer();
+                ["time"] = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+            });
+            var result = stringLocalizer["Greeting", mapper, Map];
+            return Content(result);
         }
 
-        private IStringLocalizer GetIStringLocalizerByDb()
+        private string Map(StringLocalizerParamMapper mapper)
         {
-            var source = new DbStringLocalizerSource();
-            var stringLocalizerFactory = new StringLocalizerFactory();
-            stringLocalizerFactory.AddSource(source);
-            return stringLocalizerFactory.CreateStringLocalizer();
+            
+            if (string.IsNullOrWhiteSpace(mapper.Template))
+                return "";
+
+            foreach (var param in mapper.ReplaceParam)
+            {
+                mapper.Template = mapper.Template.Replace($"{mapper.Placeholder}{param.Key}", param.Value);
+            }
+
+            return mapper.Template;
         }
 
     }

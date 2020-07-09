@@ -22,8 +22,8 @@ namespace Tl.Extension.Localization.Db
         {
             DBData = new Dictionary<string, string>
             {
-                ["en"] = "hello from db",
-                ["zh"] = "你好 from db",
+                ["en"] = "hello from db,current culture is en ,current time is @time ",
+                ["zh"] = "你好 from db ,当前culture zh,当前时间 @time",
             };
         }
 
