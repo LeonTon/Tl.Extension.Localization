@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="LocalizationBuilder.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Tl.Extension.Localization.Abstraction\Tl.Extension.Localization.Abstraction.csproj" />
   </ItemGroup>
 
