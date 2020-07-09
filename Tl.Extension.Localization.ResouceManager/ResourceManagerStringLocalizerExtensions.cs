@@ -6,14 +6,14 @@ namespace Tl.Extension.Localization.ResouceManager
 {
     public static class ResourceManagerStringLocalizerExtensions
     {
-        public static IServiceCollection AddResourceFiles(
-            this IServiceCollection services, string baseName, Assembly assembly)
+        public static ILocalizationBuilder AddResourceFiles(
+            this ILocalizationBuilder builder, string baseName, Assembly assembly)
         {
             var source = new ResourceManagerStringLocalizerSource(baseName, assembly);
-            
-            services.AddSingleton<IStringLocalizerSource>(source);
-            
-            return services;
+
+            builder.Services.AddSingleton<IStringLocalizerSource>(source);
+
+            return builder;
         }
     }
 }

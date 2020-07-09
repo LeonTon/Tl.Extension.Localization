@@ -5,20 +5,17 @@ namespace Tl.Extension.Localization.Json
 {
     public static class JsonStringLocalizerExtensions
     {
-        public static IServiceCollection AddJsonFiles(
-            this IServiceCollection services, string directory, string filePathPattern)
+        public static ILocalizationBuilder AddJsonFiles(this ILocalizationBuilder builder, string directory, string filePathPattern)
         {
+
             var source = new JsonStringLocalizerSource
             {
                 Directory = directory,
                 FilePathPattern = filePathPattern
             };
-            
             source.ResolveFileProvider();
-            
-            services.AddSingleton<IStringLocalizerSource>(source);
-            
-            return services;
+            builder.Services.AddSingleton<IStringLocalizerSource>(source);
+            return builder;
         }
     }
 }
